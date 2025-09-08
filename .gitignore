@@ -1,0 +1,8 @@
+# Vagrant
+.vagrant/
+
+# IDEA
+.idea/
+
+# OSX
+.DS_Store
