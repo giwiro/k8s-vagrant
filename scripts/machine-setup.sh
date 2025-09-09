@@ -50,7 +50,7 @@ echo ""
 print_green_tag "TASK" " Upgrade system and install common packages"
 apt-get update
 apt-get upgrade
-apt-get install -y software-properties-common apt-transport-https ca-certificates curl gpg
+apt-get install -y software-properties-common apt-transport-https ca-certificates curl gpg net-tools
 echo ""
 
 print_green_tag "TASK" " Add the cri-o repository"

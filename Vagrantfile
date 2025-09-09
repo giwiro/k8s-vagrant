@@ -40,6 +40,7 @@ Vagrant.configure("2") do |config|
 		end
 		master.vm.provision "shell", path: "scripts/master.sh", keep_color: true, args: [
       PodNetworkCIDR,
+      MasterPrivateIp,
       TLSCheckDisable,
     ]
     master.vm.box_download_insecure = TLSCheckDisable == "true"

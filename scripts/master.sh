@@ -1,7 +1,8 @@
 #!/bin/bash
 
 POD_NETWORK_CIDR="$1"
-TLS_CHECK_DISABLE="$2"
+MASTER_PRIVATE_IP="$2"
+TLS_CHECK_DISABLE="$3"
 
 WGET_OPTIONS=""
 
@@ -24,6 +25,7 @@ echo ""
 echo ""
 echo "Configured variables:"
 print_blue_tag "POD_NETWORK_CIDR" ": $POD_NETWORK_CIDR"
+print_blue_tag "MASTER_PRIVATE_IP" ": $MASTER_PRIVATE_IP"
 print_blue_tag "TLS_CHECK_DISABLE" ": $TLS_CHECK_DISABLE"
 echo ""
 
@@ -32,7 +34,11 @@ print_blue_tag "WGET_OPTIONS" ": $WGET_OPTIONS"
 echo ""
 
 print_green_tag "TASK" ": Initialize Kubernetes Cluster"
-kubeadm init --pod-network-cidr="$POD_NETWORK_CIDR"
+kubeadm init \
+  --apiserver-advertise-address="$MASTER_PRIVATE_IP" \
+  --pod-network-cidr="$POD_NETWORK_CIDR,10.0.2.15" \
+  --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" \
+  --upload-certs
 echo ""
 
 print_green_tag "TASK" ": Copy kube admin config to user and root .kube directory"
