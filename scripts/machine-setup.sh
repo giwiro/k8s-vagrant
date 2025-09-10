@@ -108,6 +108,7 @@ echo ""
 
 print_green_tag "TASK" " Add useful alias"
 echo 'alias k="kubectl"' >> ~/.bashrc
+sudo -u vagrant echo 'alias k="kubectl"' >> /home/vagrant/.bashrc
 echo ""
 
 echo ""

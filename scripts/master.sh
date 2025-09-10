@@ -36,7 +36,7 @@ echo ""
 print_green_tag "TASK" ": Initialize Kubernetes Cluster"
 kubeadm init \
   --apiserver-advertise-address="$MASTER_PRIVATE_IP" \
-  --pod-network-cidr="$POD_NETWORK_CIDR,10.0.2.15" \
+  --pod-network-cidr="$POD_NETWORK_CIDR" \
   --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" \
   --upload-certs
 echo ""
