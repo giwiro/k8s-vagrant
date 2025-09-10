@@ -1,7 +1,7 @@
 <div align="center">
     <img src="https://raw.githubusercontent.com/giwiro/k8s-vagrant/main/resources/logo.png" alt="logo" width="400" />
-    <hr />
-    <p>Tired of cloud bills? Get a fully-functional local Kubernetes cluster in minutes! This project uses Vagrant & Ubuntu, powered by Kubeadm, Flannel, and CRI-O, making K8s development and testing accessible and free.</p>
+    <h1>k8s-vagrant</h1>
+    <p>Your Local Kubernetes Playground. Get a fully-functional local Kubernetes cluster in minutes!</p>
 </div>
 
 <p align="center">
@@ -17,6 +17,20 @@
 [![Flannel GitHub Release][flannel-badge]][flannel-url]
 [![GitHub License][license-badge]][license-url]
 -->
+
+Tired of cloud bills?
+This project provides a simple yet robust solution for quickly provisioning a local Kubernetes
+cluster using Vagrant & Ubuntu, Kubeadm, Flannel, and CRI-O. Designed with developers in mind, it offers an efficient
+and cost-effective way to learn Kubernetes, test applications, and prototype deployments without incurring expensive
+cloud infrastructure fees.
+
+## System Prerequisites
+
+- Software Requirements:
+    - **[Git](https://git-scm.com/)**: For cloning the repository.
+    - **[Vagrant](https://developer.hashicorp.com/vagrant)**: Core tool for managing virtual machines.
+    - **[VirtualBox](https://www.virtualbox.org/)**: For virtualization purposes.
+
 
 ## Installation
 
@@ -47,10 +61,10 @@ vagrant ssh master -c 'kubectl get nodes -o wide'
 And you should see something like this:
 
 ```
-NAME      STATUS   ROLES           AGE   VERSION
-master    Ready    control-plane   15h   v1.33.4
-worker1   Ready    worker          15h   v1.33.4
-worker2   Ready    worker          15h   v1.33.4
+NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
+master    Ready    control-plane   9m36s   v1.33.5   192.168.1.2   <none>        Ubuntu 22.04.5 LTS   5.15.0-151-generic   cri-o://1.33.4
+worker1   Ready    <none>          6m10s   v1.33.5   192.168.2.2   <none>        Ubuntu 22.04.5 LTS   5.15.0-151-generic   cri-o://1.33.4
+worker2   Ready    <none>          3m21s   v1.33.5   192.168.2.3   <none>        Ubuntu 22.04.5 LTS   5.15.0-151-generic   cri-o://1.33.4
 ```
 
 ## Configuration
