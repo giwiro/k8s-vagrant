@@ -49,12 +49,12 @@ echo ""
 
 print_green_tag "TASK" " Upgrade system and install common packages"
 apt-get update
-apt-get upgrade
+apt-get upgrade -y
 apt-get install -y software-properties-common apt-transport-https ca-certificates curl gpg net-tools
 echo ""
 
 print_green_tag "TASK" " Add the cri-o repository"
-curl $CURL_OPTIONS -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
+curl $CURL_OPTIONS -fsSL "https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key" | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list
 apt-get update
 echo ""
@@ -91,13 +91,13 @@ systemctl restart crio.service
 echo ""
 
 print_green_tag "TASK" " Add the Kubernetes repository"
-curl $CURL_OPTIONS -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+curl $CURL_OPTIONS -fsSL "https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key" | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |  tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 echo ""
 
 print_green_tag "TASK" " Upgrade system"
-apt-get upgrade
+apt-get upgrade -y
 echo ""
 
 print_green_tag "TASK" " Install Kubernetes (kubelet, kubeadm, kubectl)"
