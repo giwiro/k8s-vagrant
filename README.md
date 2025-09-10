@@ -1,5 +1,6 @@
 <div align="center">
-    <h1>Vagrant + Kubernetes</h1>
+    <img src="https://raw.githubusercontent.com/giwiro/k8s-vagrant/main/logo.png" alt="logo" width="400" />
+    ***
     <p>Tired of cloud bills? Get a fully-functional local Kubernetes cluster in minutes! This project uses Vagrant & Ubuntu, powered by Kubeadm, Flannel, and CRI-O, making K8s development and testing accessible and free.</p>
 </div>
 
