@@ -18,6 +18,8 @@
 [![GitHub License][license-badge]][license-url]
 -->
 
+## Description
+
 Tired of cloud bills?
 This project provides a simple yet robust solution for quickly provisioning a local Kubernetes
 cluster using Vagrant & Ubuntu, Kubeadm, Flannel, and CRI-O. Designed with developers in mind, it offers an efficient
@@ -107,6 +109,27 @@ firewall. What it does is:
   - Adds `Acquire::https::Verify-Peer "false";` configuration to `apt`.
   - Adds `insecure-registry` config to `crio`.
   - Adds `--no-check-certificate` option to `wget`.
+
+
+## Resources configuration
+
+The resource configuration is done in the `Vagrantfile` too, feel free to change it.
+
+By default, the master node has 4GB of RAM and 2 CPUs.
+```ruby
+master.vm.provider VMProvider do |vb|
+  vb.memory = "4096"
+  vb.cpus = "2"
+end
+```
+
+By default, the worker nodes have 4GB of RAM and 2 CPUs.
+```ruby
+worker.vm.provider VMProvider do |v|
+  v.memory = "4096"
+  v.cpus = "2"
+end
+```
 
 ## License
 
