@@ -1,7 +1,7 @@
 <div align="center">
     <img src="https://raw.githubusercontent.com/giwiro/k8s-vagrant/main/resources/logo.png" alt="logo" width="400" />
     <h1>k8s-vagrant</h1>
-    <p>Your Local Kubernetes Playground. Get a fully-functional local Kubernetes cluster in minutes!</p>
+    <p>Your Local Kubernetes Playground ☸️🛝. Get a fully-functional local Kubernetes cluster in minutes!</p>
 </div>
 
 <p align="center">
