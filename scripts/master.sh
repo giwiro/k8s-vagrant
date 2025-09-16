@@ -5,9 +5,11 @@ MASTER_PRIVATE_IP="$2"
 TLS_CHECK_DISABLE="$3"
 
 WGET_OPTIONS=""
+CURL_OPTIONS=""
 
 if [ "$TLS_CHECK_DISABLE" = "true" ] ; then
   WGET_OPTIONS="$WGET_OPTIONS --no-check-certificate"
+  CURL_OPTIONS="$CURL_OPTIONS -k"
 fi
 
 function print_green_tag {
@@ -31,6 +33,7 @@ echo ""
 
 echo "Configured options:"
 print_blue_tag "WGET_OPTIONS" ": $WGET_OPTIONS"
+print_blue_tag "CURL_OPTIONS" ": $CURL_OPTIONS"
 echo ""
 
 print_green_tag "TASK" ": Initialize Kubernetes Cluster"
@@ -74,6 +77,13 @@ INTERFACE_NAME=$(ip addr | awk -vtarget_addr="$MASTER_PRIVATE_IP" '
 echo "INTERFACE_NAME=$INTERFACE_NAME"
 sed -i -e "/containers:/,/args:/!b;/args:/a\        - --iface=$INTERFACE_NAME" $KUBE_FLANNEL_FILE
 sudo -u vagrant kubectl apply -f $KUBE_FLANNEL_FILE
+echo ""
+
+print_green_tag "TASK" ": Install Helm"
+curl $CURL_OPTIONS -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm -y
 echo ""
 
 print_green_tag "TASK" ": Generate /vagrant/tmp/join-cluster.sh"
