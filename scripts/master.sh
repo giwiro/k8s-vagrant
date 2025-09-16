@@ -50,13 +50,29 @@ mkdir -p /root/.kube
 cp /etc/kubernetes/admin.conf /root/.kube/config
 chown -R root:root /root/.kube
 
-systemctl restart kublet.service
+systemctl restart kubelet.service
 echo ""
 
 print_green_tag "TASK" ": Install flannel"
 KUBE_FLANNEL_FILE=kube-flannel.yml
 wget $WGET_OPTIONS -O $KUBE_FLANNEL_FILE https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-sed -i -e "s#10.244.0.0/16#$POD_NETWORK_CIDR#g" $KUBE_FLANNEL_FILE
+# Change CIDR
+sed -i -e "s#\"Network\": \".*\"#\"Network\": \"$POD_NETWORK_CIDR\"#g" $KUBE_FLANNEL_FILE
+# Find right interface
+INTERFACE_NAME=eth0
+INTERFACE_NAME=$(ip addr | awk -vtarget_addr="$MASTER_PRIVATE_IP" '
+  /^[0-9]+:/ {
+    iface=substr($2, 0, length($2)-1)
+  }
+  $1 == "inet" {
+    split($2, addr, "/")
+    if (addr[1] == target_addr) {
+      print iface
+    }
+  }
+')
+echo "INTERFACE_NAME=$INTERFACE_NAME"
+sed -i -e "/containers:/,/args:/!b;/args:/a\        - --iface=$INTERFACE_NAME" $KUBE_FLANNEL_FILE
 sudo -u vagrant kubectl apply -f $KUBE_FLANNEL_FILE
 echo ""
 

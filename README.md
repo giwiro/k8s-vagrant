@@ -5,9 +5,9 @@
 </div>
 
 <p align="center">
-    <a href="https://github.com/kubernetes/kubernetes" alt="Kubernetes"><img src="https://img.shields.io/github/v/release/kubernetes/kubernetes?filter=v1.33.4&label=kubernetes" /></a>
+    <a href="https://github.com/kubernetes/kubernetes" alt="Kubernetes"><img src="https://img.shields.io/github/v/release/kubernetes/kubernetes?filter=v1.34.1&label=kubernetes" /></a>
     <a href="https://github.com/flannel-io/flannel" alt="Flannel"><img src="https://img.shields.io/github/v/release/flannel-io/flannel?label=flannel" /></a>
-    <a href="https://github.com/cri-o/cri-o" alt="Crio"><img src="https://img.shields.io/github/v/release/cri-o/cri-o?filter=v1.33.4&label=cri-o" /></a>
+    <a href="https://github.com/cri-o/cri-o" alt="Crio"><img src="https://img.shields.io/github/v/release/cri-o/cri-o?filter=v1.34.0&label=cri-o" /></a>
     <a href="https://github.com/giwiro/k8s-vagrant/blob/main/LICENSE" alt="MIT"><img src="https://img.shields.io/github/license/giwiro/k8s-vagrant" /></a>
 </p>
 

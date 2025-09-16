@@ -18,8 +18,8 @@ Vagrant.configure("2") do |config|
   NumberNodes = 2
   NodesPrivateIpPrefix = "192.168.2."
   PodNetworkCIDR = "10.1.0.0/16"
-  KubernetesVersion = "v1.33"
-  CrioVersion = "v1.33"
+  KubernetesVersion = "v1.34"
+  CrioVersion = "v1.34"
   # This is in case you are behind a firewall that changes your SSL certs, otherwise put it as false
   TLSCheckDisable = "true"
 
