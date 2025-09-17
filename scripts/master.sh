@@ -84,6 +84,7 @@ curl $CURL_OPTIONS -fsSL https://packages.buildkite.com/helm-linux/helm-debian/g
 echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm -y
+systemctl restart kubelet.service
 echo ""
 
 print_green_tag "TASK" ": Generate /vagrant/tmp/join-cluster.sh"
