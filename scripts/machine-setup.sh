@@ -88,6 +88,12 @@ sysctl -w net.ipv4.ip_forward=1
 echo "Restart and enable crio.service"
 systemctl enable crio --now
 systemctl restart crio.service
+systemctl restart irqbalance.service
+systemctl restart multipathd.service
+systemctl restart packagekit.service
+systemctl restart polkit.service
+systemctl restart ModemManager.service
+systemctl restart networkd-dispatcher.service
 echo ""
 
 print_green_tag "TASK" " Add the Kubernetes repository"
@@ -104,6 +110,12 @@ print_green_tag "TASK" " Install Kubernetes (kubelet, kubeadm, kubectl)"
 apt-get install -y kubelet kubeadm kubectl
 systemctl restart kubelet.service
 systemctl restart crio.service
+systemctl restart irqbalance.service
+systemctl restart multipathd.service
+systemctl restart packagekit.service
+systemctl restart polkit.service
+systemctl restart ModemManager.service
+systemctl restart networkd-dispatcher.service
 echo ""
 
 print_green_tag "TASK" " Add useful alias"
